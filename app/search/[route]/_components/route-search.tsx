@@ -6,6 +6,7 @@ import { FlightSearch } from '@/components/search/flight-search'
 import { HotelSearch } from '@/components/search/hotel-search'
 import { cn } from '@/lib/utils'
 import type { CityValue } from '@/components/search/city-autocomplete'
+import { useTranslation } from 'react-i18next'
 
 interface Props {
   defaultOrigin: CityValue
@@ -14,6 +15,7 @@ interface Props {
 
 export function RouteSearch({ defaultOrigin, defaultDestination }: Props) {
   const [tab, setTab] = useState<'flights' | 'hotels'>('flights')
+  const { t } = useTranslation()
 
   return (
     <div className="w-full">
@@ -26,7 +28,7 @@ export function RouteSearch({ defaultOrigin, defaultDestination }: Props) {
             tab === 'flights' ? 'bg-white text-sky-700 shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
           )}
         >
-          <Plane className="h-4 w-4 -rotate-45" /> Авиабилеты
+          <Plane className="h-4 w-4 -rotate-45" /> {t('search.tabs.flights')}
         </button>
         <button
           type="button"
@@ -36,7 +38,7 @@ export function RouteSearch({ defaultOrigin, defaultDestination }: Props) {
             tab === 'hotels' ? 'bg-white text-emerald-700 shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
           )}
         >
-          <BedDouble className="h-4 w-4" /> Отели
+          <BedDouble className="h-4 w-4" /> {t('search.tabs.hotels')}
         </button>
       </div>
 

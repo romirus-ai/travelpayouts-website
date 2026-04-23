@@ -1,29 +1,48 @@
+import type { AppCurrency, AppLocale } from '@/lib/i18n'
+
 export const TP_MARKER = process.env.NEXT_PUBLIC_TRAVELPAYOUTS_MARKER ?? process.env.TRAVELPAYOUTS_MARKER ?? ''
 export const TP_TOKEN = process.env.TRAVELPAYOUTS_API_TOKEN ?? ''
 
 /**
- * Build a search URL on aviasales.ru that Travelpayouts understands.
+ * Build a search URL on aviasales that Travelpayouts understands.
  * Format: /search/ORIGINddmmDESTINATIONddmmPAX
- * Example: /search/MOW2805AER04061 — Moscow→Sochi, 28.05 out, 04.06 back, 1 adult
  */
 export function buildAviasalesSearchUrl(params: {
   origin: string
   destination: string
   depart?: string // yyyy-mm-dd
-  back?: string   // yyyy-mm-dd
+  back?: string // yyyy-mm-dd
   adults?: number
   marker?: string
+  locale?: AppLocale
+  currency?: AppCurrency
 }): string {
-  const { origin, destination, depart, back, adults = 1, marker = TP_MARKER } = params
+  const {
+    origin,
+    destination,
+    depart,
+    back,
+    adults = 1,
+    marker = TP_MARKER,
+    locale = 'ru',
+    currency = 'RUB',
+  } = params
+
   const dd = (iso?: string) => {
     if (!iso) return ''
     const [y, m, d] = (iso ?? '').split('-')
     if (!y || !m || !d) return ''
     return `${d}${m}`
   }
+
   const segment = `${origin}${dd(depart)}${destination}${dd(back)}${adults}`
-  const url = new URL(`https://www.aviasales.ru/search/${segment}`)
+  const domain = locale === 'en' ? 'https://www.aviasales.com' : 'https://www.aviasales.ru'
+  const url = new URL(`${domain}/search/${segment}`)
+
   if (marker) url.searchParams.set('marker', marker)
+  url.searchParams.set('currency', currency)
+  url.searchParams.set('locale', locale)
+
   return url.toString()
 }
 
@@ -33,13 +52,26 @@ export function buildHotellookUrl(params: {
   checkOut?: string
   adults?: number
   marker?: string
+  locale?: AppLocale
+  currency?: AppCurrency
 }): string {
-  const { destination, checkIn, checkOut, adults = 2, marker = TP_MARKER } = params
+  const {
+    destination,
+    checkIn,
+    checkOut,
+    adults = 2,
+    marker = TP_MARKER,
+    locale = 'ru',
+    currency = 'RUB',
+  } = params
+
   const url = new URL('https://search.hotellook.com/')
   url.searchParams.set('destination', destination)
   if (checkIn) url.searchParams.set('checkIn', checkIn)
   if (checkOut) url.searchParams.set('checkOut', checkOut)
   url.searchParams.set('adults', String(adults ?? 2))
+  url.searchParams.set('language', locale)
+  url.searchParams.set('currency', currency)
   if (marker) url.searchParams.set('marker', marker)
   return url.toString()
 }
@@ -51,10 +83,10 @@ export type CitySuggestion = {
   iata?: string[]
 }
 
-export async function suggestCities(query: string): Promise<CitySuggestion[]> {
+export async function suggestCities(query: string, locale: AppLocale = 'ru'): Promise<CitySuggestion[]> {
   if (!query || query.trim().length < 1) return []
   try {
-    const url = `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(query)}&locale=ru&types[]=city`
+    const url = `https://autocomplete.travelpayouts.com/places2?term=${encodeURIComponent(query)}&locale=${locale}&types[]=city`
     const res = await fetch(url, { next: { revalidate: 3600 } })
     if (!res.ok) return []
     const data = (await res.json()) as any[]

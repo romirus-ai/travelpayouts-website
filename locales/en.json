@@ -1,0 +1,130 @@
+{
+  "common": {
+    "from": "from",
+    "search": "Search",
+    "searchHotel": "Search hotels",
+    "home": "Home",
+    "allRightsReserved": "All rights reserved."
+  },
+  "header": {
+    "nav": {
+      "flights": "Flights",
+      "hotels": "Hotels",
+      "destinations": "Destinations",
+      "esim": "eSIM"
+    },
+    "findTicket": "Find tickets",
+    "language": "Language",
+    "currency": "Currency",
+    "currencyRate": "1 USD ≈ {{rate}} RUB"
+  },
+  "hero": {
+    "imageAlt": "Airplane in the sunset sky",
+    "badge": "We compare 100+ agencies and airlines",
+    "titlePrefix": "Cheap",
+    "titleAccent": "flights",
+    "titleSuffix": "and hotels",
+    "description": "Find the best flight and hotel deals in seconds. English interface and real-time currency switching.",
+    "chips": {
+      "noFees": "No hidden markups or surprise fees",
+      "trusted": "Trusted booking partners only",
+      "cards": "Easy payment and flexible booking"
+    }
+  },
+  "features": {
+    "badge": "Why choose us",
+    "title": "Fast, transparent, smart",
+    "titleAccent": "smart",
+    "items": {
+      "fast": { "title": "Search in 5 seconds", "text": "We scan 100+ sources at once and show the best options instantly." },
+      "payments": { "title": "Flexible payments", "text": "Pay in your preferred currency and compare options side by side." },
+      "global": { "title": "Worldwide coverage", "text": "From city breaks in Europe to long-haul trips across the globe." },
+      "support": { "title": "24/7 support", "text": "Our partners help with refunds, changes, and booking questions anytime." }
+    }
+  },
+  "destinations": {
+    "badge": "Trending routes",
+    "title": "Where to fly now",
+    "titleAccent": "now",
+    "description": "Popular routes with pre-filled search forms and up-to-date fares.",
+    "cta": "Search",
+    "flightTime": "Flight time"
+  },
+  "hotels": {
+    "badge": "Hotels & apartments",
+    "title": "Places to stay for every style and budget",
+    "titleAccent": "every",
+    "description": "We compare rates from Booking, Agoda, Ostrovok and more so you can book with confidence.",
+    "features": {
+      "inventory": { "title": "2M+ hotels", "text": "From hostels to premium resorts" },
+      "discounts": { "title": "Up to 60% off", "text": "Save by comparing multiple booking platforms" },
+      "cancel": { "title": "Free cancellation", "text": "Choose flexible options with no upfront stress" }
+    }
+  },
+  "esim": {
+    "badge": "eSIM deals",
+    "title": "Travel internet in minutes",
+    "titleAccent": "in minutes",
+    "description": "Buy your eSIM online and activate it before departure. Works in 200+ countries and usually costs less than roaming.",
+    "highlights": {
+      "delivery": "Instant QR delivery to your email",
+      "instant": "Go online right after landing",
+      "devices": "Compatible with iPhone, Samsung, Google Pixel, Huawei"
+    },
+    "planFrom": "from",
+    "days": "days"
+  },
+  "search": {
+    "tabs": {
+      "flights": "Flights",
+      "hotels": "Hotels"
+    },
+    "flight": {
+      "compactTitle": "Quick route search",
+      "origin": "From",
+      "destination": "To",
+      "depart": "Depart",
+      "return": "Return",
+      "passengers": "Passengers",
+      "swap": "Swap",
+      "originPlaceholder": "New York",
+      "destinationPlaceholder": "London",
+      "errorCity": "Please select departure and destination cities"
+    },
+    "hotel": {
+      "destination": "Destination",
+      "destinationPlaceholder": "City, region, or hotel",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "guests": "Guests",
+      "errorCity": "Please select a city for hotel search"
+    },
+    "autocomplete": {
+      "cityOrAirport": "City or airport"
+    }
+  },
+  "routePage": {
+    "notFound": "Route not found",
+    "toSearch": "Back to search",
+    "timeInAir": "Flight time",
+    "pricesFrom": "Prices from",
+    "direction": "Route",
+    "tipsBadge": "Travel tips",
+    "tipsTitle": "How to save on {{route}} flights",
+    "faqBadge": "Frequently asked questions",
+    "faqTitle": "FAQ: {{route}} flights",
+    "otherBadge": "Other routes",
+    "otherTitle": "People also search"
+  },
+  "footer": {
+    "description": "Find cheap flights and hotels worldwide. We compare dozens of airlines and booking systems in seconds.",
+    "popular": "Popular destinations",
+    "sections": "Sections",
+    "sectionsLinks": {
+      "flights": "Flight search",
+      "hotels": "Hotel search",
+      "esim": "eSIM plans"
+    },
+    "partners": "Search and booking are provided by Aviasales & Hotellook partners."
+  }
+}

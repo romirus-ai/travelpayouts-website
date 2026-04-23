@@ -1,8 +1,17 @@
+'use client'
+
 import Link from 'next/link'
 import { Plane } from 'lucide-react'
+import { useTranslation } from 'react-i18next'
+import { useLocalization } from '@/components/providers/localization-provider'
+import { getDestinations } from '@/lib/destinations'
 
 export function SiteFooter() {
   const year = 2026
+  const { t } = useTranslation()
+  const { locale } = useLocalization()
+  const popular = getDestinations(locale).slice(0, 3)
+
   return (
     <footer className="mt-16 border-t border-slate-200 bg-slate-50">
       <div className="mx-auto w-full max-w-[1200px] px-4 py-10 md:px-6">
@@ -16,33 +25,49 @@ export function SiteFooter() {
                 Sales<span className="text-sky-600">Travel</span>
               </span>
             </Link>
-            <p className="mt-3 max-w-sm text-sm text-slate-600">
-              Поиск дешёвых авиабилетов и отелей по всему миру. Сравниваем цены десятков авиакомпаний за несколько секунд.
-            </p>
+            <p className="mt-3 max-w-sm text-sm text-slate-600">{t('footer.description')}</p>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-slate-900">Популярные направления</h4>
+            <h4 className="text-sm font-semibold text-slate-900">{t('footer.popular')}</h4>
             <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              <li><Link href="/search/iz-moskvy-v-sochi" className="hover:text-sky-700">Москва — Сочи</Link></li>
-              <li><Link href="/search/iz-moskvy-v-sankt-peterburg" className="hover:text-sky-700">Москва — Санкт-Петербург</Link></li>
-              <li><Link href="/search/iz-moskvy-v-kazan" className="hover:text-sky-700">Москва — Казань</Link></li>
+              {popular.map((d) => (
+                <li key={d.slug}>
+                  <Link href={`/search/${d.slug}`} className="hover:text-sky-700">
+                    {d.shortTitle}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold text-slate-900">Разделы</h4>
+            <h4 className="text-sm font-semibold text-slate-900">{t('footer.sections')}</h4>
             <ul className="mt-3 space-y-2 text-sm text-slate-600">
-              <li><Link href="/#flights" className="hover:text-sky-700">Поиск авиабилетов</Link></li>
-              <li><Link href="/#hotels" className="hover:text-sky-700">Поиск отелей</Link></li>
-              <li><Link href="/#esim" className="hover:text-sky-700">eSIM и сим-карты</Link></li>
+              <li>
+                <Link href="/#flights" className="hover:text-sky-700">
+                  {t('footer.sectionsLinks.flights')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#hotels" className="hover:text-sky-700">
+                  {t('footer.sectionsLinks.hotels')}
+                </Link>
+              </li>
+              <li>
+                <Link href="/#esim" className="hover:text-sky-700">
+                  {t('footer.sectionsLinks.esim')}
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="mt-10 flex flex-col items-start gap-2 border-t border-slate-200 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
-          <div>© {year} Sales Travel. Все права защищены.</div>
-          <div>Поиск и бронирование предоставлено партнёрами Aviasales &amp; Hotellook.</div>
+          <div>
+            © {year} Sales Travel. {t('common.allRightsReserved')}
+          </div>
+          <div>{t('footer.partners')}</div>
         </div>
       </div>
     </footer>

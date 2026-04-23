@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { MapPin, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useLocalization } from '@/components/providers/localization-provider'
+import { useTranslation } from 'react-i18next'
 
 export type CityValue = { code: string; name: string }
 
@@ -23,6 +25,8 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
   const [loading, setLoading] = useState(false)
   const [active, setActive] = useState(0)
   const ref = useRef<HTMLDivElement | null>(null)
+  const { locale } = useLocalization()
+  const { t } = useTranslation()
 
   useEffect(() => {
     setQuery(value?.name ?? '')
@@ -30,25 +34,28 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
 
   useEffect(() => {
     const onDocClick = (e: MouseEvent) => {
-      if (!ref?.current) return
+      if (!ref.current) return
       if (!ref.current.contains(e.target as Node)) setOpen(false)
     }
-    document?.addEventListener?.('mousedown', onDocClick)
-    return () => document?.removeEventListener?.('mousedown', onDocClick)
+
+    document.addEventListener('mousedown', onDocClick)
+    return () => document.removeEventListener('mousedown', onDocClick)
   }, [])
 
   useEffect(() => {
-    const q = (query ?? '').trim()
+    const q = query.trim()
     if (q.length < 1) {
       setItems([])
       return
     }
+
     let aborted = false
     setLoading(true)
-    const t = setTimeout(async () => {
+
+    const tmr = setTimeout(async () => {
       try {
-        const res = await fetch(`/api/suggest?q=${encodeURIComponent(q)}`)
-        if (!res?.ok) {
+        const res = await fetch(`/api/suggest?q=${encodeURIComponent(q)}&locale=${locale}`)
+        if (!res.ok) {
           if (!aborted) setItems([])
           return
         }
@@ -60,15 +67,16 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
         if (!aborted) setLoading(false)
       }
     }, 180)
+
     return () => {
       aborted = true
-      clearTimeout(t)
+      clearTimeout(tmr)
     }
-  }, [query])
+  }, [query, locale])
 
   const pick = (it: Suggestion) => {
-    onChange?.({ code: it?.code ?? '', name: it?.name ?? '' })
-    setQuery(it?.name ?? '')
+    onChange({ code: it.code, name: it.name })
+    setQuery(it.name)
     setOpen(false)
   }
 
@@ -82,30 +90,30 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
         <input
           type="text"
           className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
-          placeholder={placeholder ?? 'Город или аэропорт'}
-          value={query ?? ''}
+          placeholder={placeholder ?? t('search.autocomplete.cityOrAirport')}
+          value={query}
           onChange={(e) => {
-            setQuery(e?.target?.value ?? '')
+            setQuery(e.target.value)
             setOpen(true)
             setActive(0)
-            if (value?.code) onChange?.(null)
+            if (value?.code) onChange(null)
           }}
           onFocus={() => setOpen(true)}
           onKeyDown={(e) => {
             if (!open) return
-            if (e?.key === 'ArrowDown') {
+            if (e.key === 'ArrowDown') {
               e.preventDefault()
-              setActive((a) => Math.min((items?.length ?? 1) - 1, a + 1))
-            } else if (e?.key === 'ArrowUp') {
+              setActive((a) => Math.min((items.length || 1) - 1, a + 1))
+            } else if (e.key === 'ArrowUp') {
               e.preventDefault()
               setActive((a) => Math.max(0, a - 1))
-            } else if (e?.key === 'Enter') {
-              const it = items?.[active]
+            } else if (e.key === 'Enter') {
+              const it = items[active]
               if (it) {
                 e.preventDefault()
                 pick(it)
               }
-            } else if (e?.key === 'Escape') {
+            } else if (e.key === 'Escape') {
               setOpen(false)
             }
           }}
@@ -115,12 +123,12 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
         ) : null}
       </div>
 
-      {open && (items?.length ?? 0) > 0 ? (
+      {open && items.length > 0 ? (
         <div className="absolute left-0 right-0 top-full z-20 mt-1 max-h-72 overflow-y-auto rounded-xl border border-slate-200 bg-white py-1 shadow-lg">
-          {items?.map?.((it, idx) => (
+          {items.map((it, idx) => (
             <button
               type="button"
-              key={`${it?.code}-${idx}`}
+              key={`${it.code}-${idx}`}
               onMouseEnter={() => setActive(idx)}
               onClick={() => pick(it)}
               className={cn(
@@ -130,12 +138,10 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
             >
               <span className="flex items-center gap-2">
                 <MapPin className="h-3.5 w-3.5 text-slate-400" />
-                <span className="font-medium">{it?.name ?? ''}</span>
-                {it?.country_name ? (
-                  <span className="text-xs text-slate-500">• {it?.country_name}</span>
-                ) : null}
+                <span className="font-medium">{it.name}</span>
+                {it.country_name ? <span className="text-xs text-slate-500">• {it.country_name}</span> : null}
               </span>
-              <span className="font-mono text-[11px] uppercase text-slate-400">{it?.code}</span>
+              <span className="font-mono text-[11px] uppercase text-slate-400">{it.code}</span>
             </button>
           ))}
         </div>

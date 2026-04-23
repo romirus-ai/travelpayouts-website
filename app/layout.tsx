@@ -7,6 +7,7 @@ import Script from 'next/script'
 import type { Metadata } from 'next'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
+import { LocalizationProvider } from '@/components/providers/localization-provider'
 
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 const jakartaSans = Plus_Jakarta_Sans({ subsets: ['latin'], variable: '--font-display' })
@@ -14,20 +15,18 @@ const jetbrainsMono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mon
 
 export const metadata: Metadata = {
   title: {
-    default: 'Sales Travel — дешёвые авиабилеты и отели',
+    default: 'Sales Travel — flights and hotels',
     template: '%s — Sales Travel',
   },
-  description:
-    'Сравниваем цены десятков авиакомпаний и систем бронирования. Находите дешёвые авиабилеты и отели за несколько секунд.',
-  keywords: ['авиабилеты', 'отели', 'дешёвые билеты', 'поиск авиабилетов', 'Москва Сочи', 'Москва СПб', 'Москва Казань'],
+  description: 'Compare flights and hotels from dozens of providers in one place.',
+  keywords: ['авиабилеты', 'flights', 'hotels', 'travel', 'travelpayouts'],
   icons: { icon: '/favicon.svg', shortcut: '/favicon.svg' },
   openGraph: {
     type: 'website',
     locale: 'ru_RU',
     siteName: 'Sales Travel',
-    title: 'Sales Travel — дешёвые авиабилеты и отели',
-    description:
-      'Сравниваем цены десятков авиакомпаний и систем бронирования. Русский интерфейс, цены в рублях.',
+    title: 'Sales Travel — flights and hotels',
+    description: 'Compare flights and hotels in Russian and English with RUB/USD support.',
     images: ['/og-image.png'],
   },
   robots: { index: true, follow: true },
@@ -44,13 +43,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className={`${dmSans.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          <div className="flex min-h-screen flex-col">
-            <SiteHeader />
-            <div className="flex-1">{children}</div>
-            <SiteFooter />
-          </div>
-          <Toaster />
-          <ChunkLoadErrorHandler />
+          <LocalizationProvider>
+            <div className="flex min-h-screen flex-col">
+              <SiteHeader />
+              <div className="flex-1">{children}</div>
+              <SiteFooter />
+            </div>
+            <Toaster />
+            <ChunkLoadErrorHandler />
+          </LocalizationProvider>
         </ThemeProvider>
 
         {GA_ID ? (
