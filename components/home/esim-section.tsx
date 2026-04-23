@@ -1,0 +1,98 @@
+'use client'
+
+import { Smartphone, Globe, Zap, ArrowRight } from 'lucide-react'
+import { useMemo } from 'react'
+
+const MARKER = process.env.NEXT_PUBLIC_TRAVELPAYOUTS_MARKER ?? ''
+
+function esimLink(subid: string) {
+  // Travelpayouts redirect to Airalo with marker + subid tracking.
+  // Users can swap trs / p / campaign_id to their active offer in the TP dashboard.
+  const params = new URLSearchParams({
+    marker: MARKER,
+    subid: subid ?? '',
+  })
+  return `https://www.airalo.com/?${params.toString()}`
+}
+
+export function EsimSection() {
+  const plans = useMemo(
+    () => [
+      { region: 'Европа', price: 790, data: '5 ГБ', days: 30, subid: 'esim_europe' },
+      { region: 'Азия', price: 690, data: '5 ГБ', days: 30, subid: 'esim_asia' },
+      { region: 'США', price: 990, data: '5 ГБ', days: 30, subid: 'esim_usa' },
+      { region: 'Global', price: 2490, data: '10 ГБ', days: 30, subid: 'esim_global' },
+    ],
+    []
+  )
+
+  return (
+    <section id="esim" className="bg-slate-50 py-16 md:py-20">
+      <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
+        <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:items-start">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-violet-600">eSIM и сим-карты</p>
+            <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
+              Интернет в поездке — <span className="text-violet-600">за 2 минуты</span>
+            </h2>
+            <p className="mt-3 text-sm text-slate-600 md:text-base">
+              Покупайте eSIM онлайн и активируйте её ещё до вылета. Работает в 200+ странах, а местная связь — в разы дешевле роуминга.
+            </p>
+
+            <div className="mt-6 space-y-3">
+              {[
+                { icon: Zap, text: 'Мгновенная доставка QR-кода на email' },
+                { icon: Globe, text: 'Wi-Fi не нужен — сеть сразу после прилёта' },
+                { icon: Smartphone, text: 'Совместимо с iPhone, Samsung, Google Pixel, Huawei' },
+              ].map((f, i) => {
+                const Icon = f.icon
+                return (
+                  <div key={i} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-violet-100 text-violet-700">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="text-sm text-slate-700">{f?.text}</span>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {plans?.map?.((p) => (
+              <a
+                key={p?.subid}
+                href={esimLink(p?.subid ?? '')}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                className="group flex items-start justify-between gap-3 rounded-2xl bg-white p-5 shadow-md ring-1 ring-slate-100 transition-all hover:-translate-y-0.5 hover:shadow-xl"
+              >
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 text-white shadow-sm">
+                      <Smartphone className="h-4 w-4" />
+                    </span>
+                    <div className="font-display text-lg font-bold text-slate-900">{p?.region}</div>
+                  </div>
+                  <div className="mt-2 text-xs text-slate-500">
+                    {p?.data} • {p?.days} дней
+                  </div>
+                  <div className="mt-3">
+                    <span className="text-xs text-slate-500">от </span>
+                    <span className="font-display text-2xl font-bold text-slate-900">
+                      {(p?.price ?? 0).toLocaleString('ru-RU')}
+                    </span>
+                    <span className="ml-1 text-sm text-slate-500">₽</span>
+                  </div>
+                </div>
+                <span className="mt-1 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-slate-900 text-white transition-all group-hover:bg-violet-600">
+                  <ArrowRight className="h-4 w-4" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
