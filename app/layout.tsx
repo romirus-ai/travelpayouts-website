@@ -37,6 +37,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ru" suppressHydrationWarning>
       <head>
         <script src="https://apps.abacus.ai/chatllm/appllm-lib.js" async />
+        <script
+          {...({
+            nowprocket: '',
+            'data-noptimize': '1',
+            'data-cfasync': 'false',
+            'data-wpfc-render': 'false',
+            'seraph-accel-crit': '1',
+            'data-no-defer': '1',
+          } as any)}
+          dangerouslySetInnerHTML={{
+            __html: `(function () {
+              var script = document.createElement("script");
+              script.async = 1;
+              script.src = "https://tp-em.com/MTM5MzMz.js?t=139333";
+              document.head.appendChild(script);
+            })();`,
+          }}
+        />
       </head>
       <body className={`${dmSans.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
