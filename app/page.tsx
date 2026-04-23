@@ -30,7 +30,7 @@ export default function HomePage() {
     inLanguage: 'ru-RU',
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://sales-travel.ru/search/{search_term_string}',
+      target: 'https://avia.sales.travel/search/{search_term_string}',
       'query-input': 'required name=search_term_string',
     },
   }

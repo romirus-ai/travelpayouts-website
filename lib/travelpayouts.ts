@@ -2,6 +2,7 @@ import type { AppCurrency, AppLocale } from '@/lib/i18n'
 
 export const TP_MARKER = process.env.NEXT_PUBLIC_TRAVELPAYOUTS_MARKER ?? process.env.TRAVELPAYOUTS_MARKER ?? ''
 export const TP_TOKEN = process.env.TRAVELPAYOUTS_API_TOKEN ?? ''
+export const TP_WHITE_LABEL_RESULTS_URL = 'https://avia.sales.travel'
 
 /**
  * Build a search URL on aviasales that Travelpayouts understands.
@@ -36,12 +37,12 @@ export function buildAviasalesSearchUrl(params: {
   }
 
   const segment = `${origin}${dd(depart)}${destination}${dd(back)}${adults}`
-  const domain = locale === 'en' ? 'https://www.aviasales.com' : 'https://www.aviasales.ru'
-  const url = new URL(`${domain}/search/${segment}`)
+  const url = new URL(`/search/${segment}`, TP_WHITE_LABEL_RESULTS_URL)
 
   if (marker) url.searchParams.set('marker', marker)
   url.searchParams.set('currency', currency)
   url.searchParams.set('locale', locale)
+  url.searchParams.set('resultsURL', TP_WHITE_LABEL_RESULTS_URL)
 
   return url.toString()
 }
