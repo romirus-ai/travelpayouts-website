@@ -19,14 +19,25 @@ export type Destination = {
 }
 
 const IMAGE_MAP: Record<string, string> = {
-  // RU routes (current Russian cities)
-  sochi:
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/%D0%90%D1%8D%D1%80%D0%BE%D1%84%D0%BE%D1%82%D0%BE%D1%81%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D0%97%D0%B8%D0%BC%D0%BD%D0%B5%D0%B3%D0%BE_%D1%82%D0%B5%D0%B0%D1%82%D1%80%D0%B0_02.jpg/330px-%D0%90%D1%8D%D1%80%D0%BE%D1%84%D0%BE%D1%82%D0%BE%D1%81%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA_%D0%97%D0%B8%D0%BC%D0%BD%D0%B5%D0%B3%D0%BE_%D1%82%D0%B5%D0%B0%D1%82%D1%80%D0%B0_02.jpg',
-  spb:
-    'https://images.unsplash.com/photo-1550482753-428ea8f7c863?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  kazan: 'https://images.pexels.com/photos/8590426/pexels-photo-8590426.jpeg',
+  // RU destinations
+  MOW: '/images/moscow_red_square.jpg',
+  AER: '/images/sochi_black_sea.jpg',
+  LED: '/images/saint_petersburg_palace_square.jpg',
+  KZN: '/images/kazan_kul_sharif.jpg',
+  SVX: '/images/yekaterinburg_city.jpg',
 
-  // EN routes (international city pairs)
+  // EN destinations
+  NYC: '/images/new_york_manhattan.jpg',
+  LON: '/images/london_big_ben.jpg',
+  LAX: '/images/los_angeles_hollywood.jpg',
+  CHI: '/images/chicago_skyscrapers.jpg',
+  MAN: '/images/manchester_architecture.jpg',
+  DXB: '/images/dubai_burj_khalifa.jpg',
+  BKK: '/images/bangkok_temples.jpg',
+  CDG: '/images/paris_eiffel_tower.jpg',
+  FCO: '/images/rome_colosseum.jpg',
+
+  // Combined route images (kept for compatibility and replaced with new vibrant visuals)
   nycLon: '/images/route-nyc-lon.jpg',
   lonLax: '/images/route-lon-lax.jpg',
   chiMan: '/images/route-chi-man.jpg',
@@ -47,7 +58,7 @@ const DESTINATIONS_RU: Destination[] = [
     shortTitle: 'Москва → Сочи',
     headline: 'К морю и пальмам за пару часов',
     lead: 'Сравните цены десятков авиакомпаний и найдите самый дешёвый билет из Москвы в Сочи. Пляжи Чёрного моря, Красная Поляна и мягкий климат круглый год.',
-    image: img('sochi'),
+    image: img('AER'),
     country: 'Россия',
     priceFromRub: 4200,
     flightTime: '~2 ч 25 мин',
@@ -73,7 +84,7 @@ const DESTINATIONS_RU: Destination[] = [
     shortTitle: 'Москва → Санкт-Петербург',
     headline: 'Полтора часа — и вы в культурной столице',
     lead: 'Десятки рейсов в день, удобное время и цены от нескольких авиакомпаний. Эрмитаж, разводные мосты, Петергоф и белые ночи — всё в одном полёте.',
-    image: img('spb'),
+    image: img('LED'),
     country: 'Россия',
     priceFromRub: 3100,
     flightTime: '~1 ч 30 мин',
@@ -99,7 +110,7 @@ const DESTINATIONS_RU: Destination[] = [
     shortTitle: 'Москва → Казань',
     headline: 'Третья столица России — за 1 ч 30 мин',
     lead: 'Найдите дешёвые авиабилеты из Москвы в Казань: Кремль с Кул-Шариф, эчпочмаки, набережная Казанки и современный аквапарк — всё в одной поездке.',
-    image: img('kazan'),
+    image: img('KZN'),
     country: 'Россия',
     priceFromRub: 3800,
     flightTime: '~1 ч 30 мин',
@@ -128,7 +139,7 @@ const DESTINATIONS_EN: Destination[] = [
     shortTitle: 'New York → London',
     headline: 'Classic transatlantic route for work and city breaks',
     lead: 'Compare fares from major airlines and book your NYC–London flight in a few clicks. Great for business trips, theatre weekends, and museum-focused getaways.',
-    image: img('nycLon'),
+    image: img('LON'),
     country: 'United Kingdom',
     priceFromRub: 36500,
     flightTime: '~7h 00m',
@@ -154,7 +165,7 @@ const DESTINATIONS_EN: Destination[] = [
     shortTitle: 'London → Los Angeles',
     headline: 'From rainy mornings to California sunshine',
     lead: 'Find the best London–LAX fares for holidays, film industry trips, or visiting friends. Compare nonstop and one-stop itineraries and book smarter.',
-    image: img('lonLax'),
+    image: img('LAX'),
     country: 'United States',
     priceFromRub: 42800,
     flightTime: '~11h 10m',
@@ -180,7 +191,7 @@ const DESTINATIONS_EN: Destination[] = [
     shortTitle: 'Chicago → Manchester',
     headline: 'Easy gateway to Northern England',
     lead: 'Book your Chicago to Manchester flight for football weekends, university visits, and UK regional travel. Compare routes with quick connections and flexible fares.',
-    image: img('chiMan'),
+    image: img('MAN'),
     country: 'United Kingdom',
     priceFromRub: 31600,
     flightTime: '~8h 05m',
