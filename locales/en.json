@@ -36,10 +36,22 @@
     "title": "Fast, transparent, smart",
     "titleAccent": "smart",
     "items": {
-      "fast": { "title": "Search in 5 seconds", "text": "We scan 100+ sources at once and show the best options instantly." },
-      "payments": { "title": "Flexible payments", "text": "Pay in your preferred currency and compare options side by side." },
-      "global": { "title": "Worldwide coverage", "text": "From city breaks in Europe to long-haul trips across the globe." },
-      "support": { "title": "24/7 support", "text": "Our partners help with refunds, changes, and booking questions anytime." }
+      "fast": {
+        "title": "Search in 5 seconds",
+        "text": "We scan 100+ sources at once and show the best options instantly."
+      },
+      "payments": {
+        "title": "Flexible payments",
+        "text": "Pay in your preferred currency and compare options side by side."
+      },
+      "global": {
+        "title": "Worldwide coverage",
+        "text": "From city breaks in Europe to long-haul trips across the globe."
+      },
+      "support": {
+        "title": "24/7 support",
+        "text": "Our partners help with refunds, changes, and booking questions anytime."
+      }
     }
   },
   "destinations": {
@@ -56,9 +68,18 @@
     "titleAccent": "every",
     "description": "We compare rates from Booking, Agoda, Ostrovok and more so you can book with confidence.",
     "features": {
-      "inventory": { "title": "2M+ hotels", "text": "From hostels to premium resorts" },
-      "discounts": { "title": "Up to 60% off", "text": "Save by comparing multiple booking platforms" },
-      "cancel": { "title": "Free cancellation", "text": "Choose flexible options with no upfront stress" }
+      "inventory": {
+        "title": "2M+ hotels",
+        "text": "From hostels to premium resorts"
+      },
+      "discounts": {
+        "title": "Up to 60% off",
+        "text": "Save by comparing multiple booking platforms"
+      },
+      "cancel": {
+        "title": "Free cancellation",
+        "text": "Choose flexible options with no upfront stress"
+      }
     }
   },
   "esim": {
@@ -125,6 +146,39 @@
       "hotels": "Hotel search",
       "esim": "eSIM plans"
     },
-    "partners": "Search and booking are provided by Aviasales & Hotellook partners."
+    "partners": "Search and booking are provided by Aviasales & Hotellook partners.",
+    "cookieSettings": "Cookie settings"
+  },
+  "cookieConsent": {
+    "banner": {
+      "title": "We use cookies to improve your experience",
+      "description": "We use strictly necessary cookies to operate this website and, with your consent, analytics and marketing cookies to measure traffic and personalize offers. You can accept all cookies, reject optional cookies, or configure your preferences by category.",
+      "acceptAll": "Accept all",
+      "rejectOptional": "Reject optional",
+      "settings": "Settings"
+    },
+    "modal": {
+      "title": "Cookie settings",
+      "description": "Manage cookie categories. You can change your choice at any time using the footer link.",
+      "alwaysOn": "Always active",
+      "close": "Close cookie settings dialog",
+      "save": "Save preferences",
+      "acceptAll": "Accept all",
+      "rejectOptional": "Reject optional"
+    },
+    "categories": {
+      "necessary": {
+        "title": "Necessary",
+        "description": "These cookies are required for core website functionality, including navigation, security, basic preferences, and proper content rendering. They cannot be disabled."
+      },
+      "analytics": {
+        "title": "Analytics",
+        "description": "Analytics cookies help us understand how visitors use the website, which pages are most useful, and how we can improve the service. Data is processed in aggregated form."
+      },
+      "marketing": {
+        "title": "Marketing",
+        "description": "Marketing cookies are used to measure campaign performance, reduce repeated ads, and show more relevant offers on third-party platforms."
+      }
+    }
   }
 }
