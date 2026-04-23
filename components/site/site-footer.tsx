@@ -19,10 +19,10 @@ export function SiteFooter() {
 
   return (
     <footer className="mt-16 border-t border-slate-200 bg-slate-50">
-      <div className="mx-auto w-full max-w-[1200px] px-4 py-10 md:px-6">
+      <div className="mx-auto w-full max-w-[1200px] px-4 py-10 sm:py-12 md:px-6">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex min-h-11 items-center gap-2">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-sky-500 to-cyan-500 shadow-md">
                 <Plane className="h-5 w-5 -rotate-45 text-white" />
               </span>
@@ -30,15 +30,18 @@ export function SiteFooter() {
                 Sales<span className="text-sky-600">Travel</span>
               </span>
             </Link>
-            <p className="mt-3 max-w-sm text-sm text-slate-600">{t('footer.description')}</p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-slate-600">{t('footer.description')}</p>
           </div>
 
           <div>
             <h4 className="text-sm font-semibold text-slate-900">{t('footer.popular')}</h4>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <ul className="mt-3 space-y-1 text-sm text-slate-600">
               {popular.map((d) => (
                 <li key={d.slug}>
-                  <Link href={`/search/${d.slug}`} className="hover:text-sky-700">
+                  <Link
+                    href={`/search/${d.slug}`}
+                    className="inline-flex min-h-11 items-center rounded-lg px-1.5 transition hover:text-sky-700"
+                  >
                     {d.shortTitle}
                   </Link>
                 </li>
@@ -48,19 +51,28 @@ export function SiteFooter() {
 
           <div>
             <h4 className="text-sm font-semibold text-slate-900">{t('footer.sections')}</h4>
-            <ul className="mt-3 space-y-2 text-sm text-slate-600">
+            <ul className="mt-3 space-y-1 text-sm text-slate-600">
               <li>
-                <Link href="/#flights" className="hover:text-sky-700">
+                <Link
+                  href="/#flights"
+                  className="inline-flex min-h-11 items-center rounded-lg px-1.5 transition hover:text-sky-700"
+                >
                   {t('footer.sectionsLinks.flights')}
                 </Link>
               </li>
               <li>
-                <Link href="/#hotels" className="hover:text-sky-700">
+                <Link
+                  href="/#hotels"
+                  className="inline-flex min-h-11 items-center rounded-lg px-1.5 transition hover:text-sky-700"
+                >
                   {t('footer.sectionsLinks.hotels')}
                 </Link>
               </li>
               <li>
-                <Link href="/#esim" className="hover:text-sky-700">
+                <Link
+                  href="/#esim"
+                  className="inline-flex min-h-11 items-center rounded-lg px-1.5 transition hover:text-sky-700"
+                >
                   {t('footer.sectionsLinks.esim')}
                 </Link>
               </li>
@@ -76,9 +88,9 @@ export function SiteFooter() {
             <button
               type="button"
               onClick={openCookieSettings}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
             >
-              <ShieldCheck className="h-3.5 w-3.5" />
+              <ShieldCheck className="h-4 w-4" />
               {t('footer.cookieSettings')}
             </button>
           </div>

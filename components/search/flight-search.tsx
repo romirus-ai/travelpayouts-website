@@ -81,14 +81,14 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-100 md:p-5">
+    <form onSubmit={onSubmit} className="w-full rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-100 sm:p-5 md:p-6">
       {compactTitle ? (
         <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-800">
           <Plane className="h-4 w-4 text-sky-600 -rotate-45" /> {compactTitle}
         </div>
       ) : null}
 
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-[1fr_auto_1fr_auto_auto_auto_auto]">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_auto_auto_auto_auto]">
         <CityAutocomplete
           label={t('search.flight.origin')}
           value={origin}
@@ -100,7 +100,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
         <button
           type="button"
           onClick={swap}
-          className="hidden h-11 items-center justify-center self-end rounded-full bg-slate-50 p-2 text-slate-500 transition hover:bg-sky-50 hover:text-sky-600 md:flex"
+          className="order-3 inline-flex h-11 w-full items-center justify-center self-end rounded-xl bg-slate-50 p-2 text-slate-600 transition hover:bg-sky-50 hover:text-sky-600 sm:order-none lg:h-12 lg:w-12 lg:rounded-full"
           aria-label={t('search.flight.swap')}
         >
           <ArrowLeftRight className="h-4 w-4" />
@@ -123,7 +123,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
               min={minDate}
               value={depart}
               onChange={(e) => setDepart(e.target.value)}
-              className="h-11 w-full min-w-[140px] rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+              className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:text-sm"
             />
           </div>
         </div>
@@ -137,7 +137,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
               min={minBack}
               value={back}
               onChange={(e) => setBack(e.target.value)}
-              className="h-11 w-full min-w-[140px] rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+              className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:text-sm"
             />
           </div>
         </div>
@@ -149,7 +149,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
             <select
               value={String(adults)}
               onChange={(e) => setAdults(parseInt(e.target.value, 10) || 1)}
-              className="h-11 w-full min-w-[90px] appearance-none rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+              className="h-12 w-full appearance-none rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:min-w-[96px] sm:text-sm"
             >
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <option key={n} value={n}>
@@ -164,7 +164,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 px-6 text-sm font-semibold text-white shadow-md shadow-sky-500/30 transition hover:shadow-lg hover:brightness-110 disabled:opacity-60 md:w-auto"
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 px-6 text-base font-semibold text-white shadow-md shadow-sky-500/30 transition hover:shadow-lg hover:brightness-110 disabled:opacity-60 sm:text-sm lg:w-auto"
           >
             <Search className="h-4 w-4" /> {t('common.search')}
           </button>

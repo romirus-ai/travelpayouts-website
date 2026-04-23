@@ -72,8 +72,8 @@ export function HotelSearch({ defaultDestination = null }: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-100 md:p-5">
-      <div className="grid grid-cols-1 gap-3 md:grid-cols-[1.4fr_1fr_1fr_auto_auto]">
+    <form onSubmit={onSubmit} className="w-full rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-100 sm:p-5 md:p-6">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto_auto]">
         <CityAutocomplete
           label={t('search.hotel.destination')}
           value={dest}
@@ -91,7 +91,7 @@ export function HotelSearch({ defaultDestination = null }: Props) {
               min={minDate}
               value={checkIn}
               onChange={(e) => setCheckIn(e.target.value)}
-              className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+              className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:text-sm"
             />
           </div>
         </div>
@@ -105,7 +105,7 @@ export function HotelSearch({ defaultDestination = null }: Props) {
               min={minOut}
               value={checkOut}
               onChange={(e) => setCheckOut(e.target.value)}
-              className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+              className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:text-sm"
             />
           </div>
         </div>
@@ -117,7 +117,7 @@ export function HotelSearch({ defaultDestination = null }: Props) {
             <select
               value={String(adults)}
               onChange={(e) => setAdults(parseInt(e.target.value, 10) || 2)}
-              className="h-11 w-full min-w-[90px] appearance-none rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+              className="h-12 w-full appearance-none rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:min-w-[96px] sm:text-sm"
             >
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <option key={n} value={n}>
@@ -132,7 +132,7 @@ export function HotelSearch({ defaultDestination = null }: Props) {
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 px-6 text-sm font-semibold text-white shadow-md shadow-emerald-500/30 transition hover:shadow-lg hover:brightness-110 disabled:opacity-60 md:w-auto"
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-500 px-6 text-base font-semibold text-white shadow-md shadow-emerald-500/30 transition hover:shadow-lg hover:brightness-110 disabled:opacity-60 sm:text-sm lg:w-auto"
           >
             <Search className="h-4 w-4" /> {t('common.searchHotel')}
           </button>

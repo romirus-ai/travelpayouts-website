@@ -89,7 +89,7 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
         </span>
         <input
           type="text"
-          className="h-11 w-full rounded-xl border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"
+          className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:text-sm"
           placeholder={placeholder ?? t('search.autocomplete.cityOrAirport')}
           value={query}
           onChange={(e) => {
@@ -132,7 +132,7 @@ export function CityAutocomplete({ label, icon, value, onChange, placeholder }: 
               onMouseEnter={() => setActive(idx)}
               onClick={() => pick(it)}
               className={cn(
-                'flex w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm transition-colors',
+                'flex min-h-11 w-full items-center justify-between gap-2 px-3 py-2 text-left text-sm transition-colors',
                 idx === active ? 'bg-sky-50 text-sky-900' : 'text-slate-800 hover:bg-slate-50'
               )}
             >

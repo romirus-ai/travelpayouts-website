@@ -203,37 +203,35 @@ export function CookieConsent() {
             : 'pointer-events-none translate-y-8 opacity-0',
         )}
       >
-        <div className="mx-auto w-full max-w-4xl rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur md:p-5">
-          <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto w-full max-w-4xl rounded-2xl border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur sm:p-5">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="space-y-2">
               <div className="flex items-center gap-2 text-slate-900">
                 <ShieldCheck className="h-5 w-5 text-sky-600" />
-                <p className="text-sm font-semibold md:text-base">{t('cookieConsent.banner.title')}</p>
+                <p className="text-sm font-semibold sm:text-base">{t('cookieConsent.banner.title')}</p>
               </div>
-              <p className="text-xs leading-relaxed text-slate-600 md:text-sm">
-                {t('cookieConsent.banner.description')}
-              </p>
+              <p className="text-xs leading-relaxed text-slate-600 sm:text-sm">{t('cookieConsent.banner.description')}</p>
             </div>
 
-            <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3 md:w-auto md:min-w-[420px]">
+            <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-3 lg:w-auto lg:min-w-[420px]">
               <button
                 type="button"
                 onClick={acceptAll}
-                className="rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-700"
+                className="min-h-11 rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-700"
               >
                 {t('cookieConsent.banner.acceptAll')}
               </button>
               <button
                 type="button"
                 onClick={rejectOptional}
-                className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                className="min-h-11 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
                 {t('cookieConsent.banner.rejectOptional')}
               </button>
               <button
                 type="button"
                 onClick={openSettings}
-                className="rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                className="min-h-11 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
                 {t('cookieConsent.banner.settings')}
               </button>
@@ -244,8 +242,8 @@ export function CookieConsent() {
 
       {isModalOpen ? (
         <div className="fixed inset-0 z-[60] flex items-end justify-center bg-slate-900/45 p-3 sm:items-center sm:p-6">
-          <div className="w-full max-w-2xl rounded-2xl border border-slate-200 bg-white shadow-2xl animate-in fade-in zoom-in-95 duration-200">
-            <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-5 py-4">
+          <div className="w-full max-w-2xl animate-in rounded-2xl border border-slate-200 bg-white shadow-2xl fade-in zoom-in-95 duration-200">
+            <div className="flex items-start justify-between gap-3 border-b border-slate-200 px-4 py-4 sm:px-5">
               <div>
                 <h3 className="text-base font-semibold text-slate-900 md:text-lg">{t('cookieConsent.modal.title')}</h3>
                 <p className="mt-1 text-xs text-slate-600 md:text-sm">{t('cookieConsent.modal.description')}</p>
@@ -253,14 +251,14 @@ export function CookieConsent() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="rounded-lg p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
                 aria-label={t('cookieConsent.modal.close')}
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
 
-            <div className="space-y-4 px-5 py-4">
+            <div className="space-y-4 px-4 py-4 sm:px-5">
               <div className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3">
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -289,14 +287,14 @@ export function CookieConsent() {
                     aria-checked={preferences.analytics}
                     onClick={() => setPreferences((prev) => ({ ...prev, analytics: !prev.analytics }))}
                     className={cn(
-                      'relative inline-flex h-6 w-11 shrink-0 rounded-full transition',
+                      'relative inline-flex h-7 w-12 shrink-0 rounded-full transition',
                       preferences.analytics ? 'bg-sky-600' : 'bg-slate-300',
                     )}
                   >
                     <span
                       className={cn(
-                        'pointer-events-none inline-block h-5 w-5 translate-y-0.5 rounded-full bg-white shadow transition',
-                        preferences.analytics ? 'translate-x-5' : 'translate-x-0.5',
+                        'pointer-events-none inline-block h-6 w-6 translate-y-0.5 rounded-full bg-white shadow transition',
+                        preferences.analytics ? 'translate-x-5.5' : 'translate-x-0.5',
                       )}
                     />
                   </button>
@@ -317,14 +315,14 @@ export function CookieConsent() {
                     aria-checked={preferences.marketing}
                     onClick={() => setPreferences((prev) => ({ ...prev, marketing: !prev.marketing }))}
                     className={cn(
-                      'relative inline-flex h-6 w-11 shrink-0 rounded-full transition',
+                      'relative inline-flex h-7 w-12 shrink-0 rounded-full transition',
                       preferences.marketing ? 'bg-sky-600' : 'bg-slate-300',
                     )}
                   >
                     <span
                       className={cn(
-                        'pointer-events-none inline-block h-5 w-5 translate-y-0.5 rounded-full bg-white shadow transition',
-                        preferences.marketing ? 'translate-x-5' : 'translate-x-0.5',
+                        'pointer-events-none inline-block h-6 w-6 translate-y-0.5 rounded-full bg-white shadow transition',
+                        preferences.marketing ? 'translate-x-5.5' : 'translate-x-0.5',
                       )}
                     />
                   </button>
@@ -332,25 +330,25 @@ export function CookieConsent() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-2 border-t border-slate-200 px-5 py-4 sm:flex-row sm:justify-end">
+            <div className="flex flex-col gap-2 border-t border-slate-200 px-4 py-4 sm:flex-row sm:justify-end sm:px-5">
               <button
                 type="button"
                 onClick={rejectOptional}
-                className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                className="min-h-11 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
                 {t('cookieConsent.modal.rejectOptional')}
               </button>
               <button
                 type="button"
                 onClick={acceptAll}
-                className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+                className="min-h-11 rounded-xl border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
               >
                 {t('cookieConsent.modal.acceptAll')}
               </button>
               <button
                 type="button"
                 onClick={() => persistConsent(preferences)}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-700"
+                className="inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-sky-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-700"
               >
                 <Settings2 className="h-4 w-4" />
                 {t('cookieConsent.modal.save')}

@@ -19,12 +19,12 @@ export function RouteSearch({ defaultOrigin, defaultDestination }: Props) {
 
   return (
     <div className="w-full">
-      <div className="mb-3 flex items-center gap-2">
+      <div className="mb-3 flex flex-col gap-2 sm:flex-row sm:items-center">
         <button
           type="button"
           onClick={() => setTab('flights')}
           className={cn(
-            'inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition',
+            'inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition sm:w-auto',
             tab === 'flights' ? 'bg-white text-sky-700 shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
           )}
         >
@@ -34,7 +34,7 @@ export function RouteSearch({ defaultOrigin, defaultDestination }: Props) {
           type="button"
           onClick={() => setTab('hotels')}
           className={cn(
-            'inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition',
+            'inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition sm:w-auto',
             tab === 'hotels' ? 'bg-white text-emerald-700 shadow-md' : 'bg-white/20 text-white hover:bg-white/30'
           )}
         >
