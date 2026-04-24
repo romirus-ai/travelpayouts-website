@@ -60,7 +60,21 @@
     "titleAccent": "now",
     "description": "Popular routes with pre-filled search forms and up-to-date fares.",
     "cta": "Search",
-    "flightTime": "Flight time"
+    "flightTime": "Flight time",
+    "routes": {
+      "london-to-santorini": {
+        "name": "Santorini, Greece",
+        "description": "Iconic cliffside views, white villages, and sunset cruises in the Aegean."
+      },
+      "singapore-to-tokyo": {
+        "name": "Tokyo, Japan",
+        "description": "A vibrant mix of futuristic districts, historic temples, and world-class cuisine."
+      },
+      "los-angeles-to-new-york": {
+        "name": "New York, USA",
+        "description": "The classic city break with Broadway, skyline views, and nonstop energy."
+      }
+    }
   },
   "hotels": {
     "badge": "Hotels & apartments",
