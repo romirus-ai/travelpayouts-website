@@ -13,7 +13,7 @@ export function DestinationsSection() {
   const destinations = getDestinations(locale)
 
   return (
-    <section id="destinations" className="bg-white py-16 md:py-20">
+    <section id="destinations" className="bg-transparent py-16 md:py-20">
       <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
         <div className="mb-8 flex flex-col items-start gap-3 md:mb-10 md:flex-row md:items-end md:justify-between">
           <div>
@@ -30,7 +30,7 @@ export function DestinationsSection() {
             <Link
               key={d.slug}
               href={`/search/${d.slug}`}
-              className="group relative flex h-[360px] flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+              className="group glass-panel relative flex h-[360px] flex-col overflow-hidden rounded-2xl transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
             >
               <div className="absolute inset-0">
                 {d.image ? (

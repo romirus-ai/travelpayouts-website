@@ -36,7 +36,7 @@ export function EsimSection() {
   ]
 
   return (
-    <section id="esim" className="bg-slate-50 py-16 md:py-20">
+    <section id="esim" className="bg-white/20 py-16 md:py-20">
       <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
         <div className="grid gap-10 md:grid-cols-[1fr_1.6fr] md:items-start">
           <div>
@@ -66,7 +66,7 @@ export function EsimSection() {
                 href={esimLink(p.subid)}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                className="group flex items-start justify-between gap-3 rounded-2xl bg-white p-5 shadow-md ring-1 ring-slate-100 transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                className="group glass-panel flex items-start justify-between gap-3 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <div>
                   <div className="flex items-center gap-2">

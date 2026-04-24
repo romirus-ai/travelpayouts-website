@@ -18,7 +18,7 @@ export function SiteFooter() {
   }
 
   return (
-    <footer className="mt-16 border-t border-slate-200 bg-slate-50">
+    <footer className="glass-section mt-16 border-t border-white/45">
       <div className="mx-auto w-full max-w-[1200px] px-4 py-10 sm:py-12 md:px-6">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
@@ -80,7 +80,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="mt-10 flex flex-col items-start gap-3 border-t border-slate-200 pt-6 text-xs text-slate-500 md:flex-row md:items-center md:justify-between">
+        <div className="mt-10 flex flex-col items-start gap-3 border-t border-white/50 pt-6 text-xs text-slate-600 md:flex-row md:items-center md:justify-between">
           <div className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4">
             <div>
               © {year} Sales Travel. {t('common.allRightsReserved')}
@@ -88,7 +88,7 @@ export function SiteFooter() {
             <button
               type="button"
               onClick={openCookieSettings}
-              className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-100"
+              className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-white/60 bg-white/65 px-3 py-2 text-sm font-medium text-slate-700 backdrop-blur-md transition hover:border-white/80 hover:bg-white/80"
             >
               <ShieldCheck className="h-4 w-4" />
               {t('footer.cookieSettings')}

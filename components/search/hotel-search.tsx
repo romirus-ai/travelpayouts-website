@@ -72,7 +72,7 @@ export function HotelSearch({ defaultDestination = null }: Props) {
   }
 
   return (
-    <form onSubmit={onSubmit} className="w-full rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-100 sm:p-5 md:p-6">
+    <form onSubmit={onSubmit} className="glass-panel w-full rounded-2xl p-4 sm:p-5 md:p-6">
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_auto_auto]">
         <CityAutocomplete
           label={t('search.hotel.destination')}

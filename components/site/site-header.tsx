@@ -32,8 +32,8 @@ export function SiteHeader() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-40 w-full transition-all',
-        scrolled ? 'bg-white/80 shadow-sm backdrop-blur-md' : 'bg-white/55 backdrop-blur-sm'
+        'sticky top-0 z-40 w-full border-b border-white/40 transition-all',
+        scrolled ? 'glass-section shadow-sm' : 'bg-white/35 backdrop-blur-md'
       )}
     >
       <div className="mx-auto w-full max-w-[1200px] px-3 py-2 sm:px-4 md:px-6 md:py-3">
@@ -69,8 +69,8 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex w-full items-center gap-2 md:w-auto md:justify-end">
-            <div className="flex flex-1 items-center justify-center gap-1 rounded-full border border-slate-200 bg-white/85 p-1 sm:flex-none sm:px-2">
-              <span className="hidden text-xs text-slate-500 lg:inline">{t('header.language')}</span>
+            <div className="flex flex-1 items-center justify-center gap-1 rounded-full border border-white/55 bg-white/55 p-1 backdrop-blur-md sm:flex-none sm:px-2">
+              <span className="hidden text-xs text-slate-600 lg:inline">{t('header.language')}</span>
               <button
                 type="button"
                 onClick={() => setLocale('ru')}
@@ -93,8 +93,8 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <div className="flex flex-1 items-center justify-center gap-1 rounded-full border border-slate-200 bg-white/85 p-1 sm:flex-none sm:px-2">
-              <span className="hidden text-xs text-slate-500 lg:inline">{t('header.currency')}</span>
+            <div className="flex flex-1 items-center justify-center gap-1 rounded-full border border-white/55 bg-white/55 p-1 backdrop-blur-md sm:flex-none sm:px-2">
+              <span className="hidden text-xs text-slate-600 lg:inline">{t('header.currency')}</span>
               <button
                 type="button"
                 onClick={() => setCurrency('RUB')}
@@ -120,7 +120,7 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className="border-t border-slate-100 bg-white/70 px-4 py-1 text-center text-[11px] text-slate-500 md:hidden">
+      <div className="border-t border-white/45 bg-white/45 px-4 py-1 text-center text-[11px] text-slate-600 backdrop-blur-md md:hidden">
         {t('header.currencyRate', { rate: (1 / Math.max(rubToUsdRate, 0.0001)).toFixed(2) })}
         {isRateLoading ? '…' : ''}
       </div>
