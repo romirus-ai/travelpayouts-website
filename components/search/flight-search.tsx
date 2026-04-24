@@ -30,6 +30,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
   const [back, setBack] = useState<string>('')
   const [adults, setAdults] = useState<number>(1)
   const [loading, setLoading] = useState(false)
+  const [validationError, setValidationError] = useState<string | null>(null)
 
   const { t } = useTranslation()
   const { locale, currency } = useLocalization()
@@ -37,44 +38,73 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
   const minDate = useMemo(() => todayPlus(0), [])
   const minBack = useMemo(() => (depart ? depart : minDate), [depart, minDate])
 
+  const hasOrigin = Boolean(origin?.code)
+  const hasDestination = Boolean(dest?.code)
+  const hasDepartDate = Boolean(depart)
+  const isFormValid = hasOrigin && hasDestination && hasDepartDate
+
   const swap = () => {
     setOrigin(dest)
     setDest(origin)
+    setValidationError(null)
   }
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!origin?.code || !dest?.code) {
-      toast.error(t('search.flight.errorCity'))
+
+    const originCode = origin?.code
+    const destinationCode = dest?.code
+
+    if (!originCode || !destinationCode) {
+      const message = t('search.flight.errorCityAutocomplete')
+      setValidationError(message)
+      toast.error(message)
       return
     }
 
-    setLoading(true)
-    try {
-      fetch('/api/track', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          kind: 'flight',
-          origin: origin.code,
-          destination: dest.code,
-          depart,
-          return: back,
-          currency,
-          locale,
-        }),
-      }).catch(() => {})
+    if (!hasDepartDate) {
+      const message = t('search.flight.errorDate')
+      setValidationError(message)
+      toast.error(message)
+      return
+    }
 
+    setValidationError(null)
+    setLoading(true)
+
+    const trackPayload = {
+      kind: 'flight',
+      origin: originCode,
+      destination: destinationCode,
+      depart,
+      return: back,
+      currency,
+      locale,
+    }
+
+    try {
       const url = buildAviasalesSearchUrl({
-        origin: origin.code,
-        destination: dest.code,
+        origin: originCode,
+        destination: destinationCode,
         depart: depart || undefined,
         back: back || undefined,
         adults,
         locale,
         currency,
       })
-      window.open(url, '_blank', 'noopener')
+
+      if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+        const body = new Blob([JSON.stringify(trackPayload)], { type: 'application/json' })
+        navigator.sendBeacon('/api/track', body)
+      } else {
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(trackPayload),
+        }).catch(() => {})
+      }
+
+      window.location.href = url
     } finally {
       setLoading(false)
     }
@@ -92,7 +122,10 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
         <CityAutocomplete
           label={t('search.flight.origin')}
           value={origin}
-          onChange={setOrigin}
+          onChange={(value) => {
+            setOrigin(value)
+            if (validationError) setValidationError(null)
+          }}
           icon={<Plane className="h-4 w-4 -rotate-45" />}
           placeholder={t('search.flight.originPlaceholder')}
         />
@@ -109,7 +142,10 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
         <CityAutocomplete
           label={t('search.flight.destination')}
           value={dest}
-          onChange={setDest}
+          onChange={(value) => {
+            setDest(value)
+            if (validationError) setValidationError(null)
+          }}
           icon={<Plane className="h-4 w-4 rotate-45" />}
           placeholder={t('search.flight.destinationPlaceholder')}
         />
@@ -122,7 +158,10 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
               type="date"
               min={minDate}
               value={depart}
-              onChange={(e) => setDepart(e.target.value)}
+              onChange={(e) => {
+                setDepart(e.target.value)
+                if (validationError) setValidationError(null)
+              }}
               className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-base text-slate-900 shadow-sm outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100 sm:text-sm"
             />
           </div>
@@ -163,13 +202,15 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
         <div className="flex items-end">
           <button
             type="submit"
-            disabled={loading}
-            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 px-6 text-base font-semibold text-white shadow-md shadow-sky-500/30 transition hover:shadow-lg hover:brightness-110 disabled:opacity-60 sm:text-sm lg:w-auto"
+            disabled={loading || !isFormValid}
+            className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-600 to-cyan-500 px-6 text-base font-semibold text-white shadow-md shadow-sky-500/30 transition hover:shadow-lg hover:brightness-110 disabled:cursor-not-allowed disabled:from-slate-400 disabled:to-slate-500 disabled:shadow-none disabled:hover:brightness-100 sm:text-sm lg:w-auto"
           >
             <Search className="h-4 w-4" /> {t('common.search')}
           </button>
         </div>
       </div>
+
+      {validationError ? <p className="mt-3 text-sm text-rose-600">{validationError}</p> : null}
     </form>
   )
 }

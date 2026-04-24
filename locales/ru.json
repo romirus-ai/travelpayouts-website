@@ -124,7 +124,9 @@
       "swap": "Поменять",
       "originPlaceholder": "Москва",
       "destinationPlaceholder": "Сочи",
-      "errorCity": "Укажите город вылета и прилёта"
+      "errorCity": "Укажите город вылета и прилёта",
+      "errorCityAutocomplete": "Выберите города из списка автоподсказки, чтобы определить IATA-коды.",
+      "errorDate": "Выберите дату вылета"
     },
     "hotel": {
       "destination": "Куда",

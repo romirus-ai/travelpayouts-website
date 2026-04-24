@@ -42,21 +42,18 @@ export function HotelSearch({ defaultDestination = null }: Props) {
     }
 
     setLoading(true)
-    try {
-      fetch('/api/track', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({
-          kind: 'hotel',
-          destination: dest.code,
-          query: dest.name,
-          depart: checkIn,
-          return: checkOut,
-          currency,
-          locale,
-        }),
-      }).catch(() => {})
 
+    const trackPayload = {
+      kind: 'hotel',
+      destination: dest.code,
+      query: dest.name,
+      depart: checkIn,
+      return: checkOut,
+      currency,
+      locale,
+    }
+
+    try {
       const url = buildHotellookUrl({
         destination: dest.name,
         checkIn: checkIn || undefined,
@@ -65,7 +62,19 @@ export function HotelSearch({ defaultDestination = null }: Props) {
         locale,
         currency,
       })
-      window.open(url, '_blank', 'noopener')
+
+      if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+        const body = new Blob([JSON.stringify(trackPayload)], { type: 'application/json' })
+        navigator.sendBeacon('/api/track', body)
+      } else {
+        fetch('/api/track', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(trackPayload),
+        }).catch(() => {})
+      }
+
+      window.location.href = url
     } finally {
       setLoading(false)
     }

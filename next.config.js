@@ -15,6 +15,20 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
   images: { unoptimized: true },
+  async redirects() {
+    return [
+      {
+        source: '/en',
+        destination: '/',
+        permanent: false,
+      },
+      {
+        source: '/en/:path*',
+        destination: '/:path*',
+        permanent: false,
+      },
+    ];
+  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
       config.output.filename = 'static/chunks/[name]-[contenthash:8].js';

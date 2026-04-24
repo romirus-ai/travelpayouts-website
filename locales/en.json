@@ -124,7 +124,9 @@
       "swap": "Swap",
       "originPlaceholder": "New York",
       "destinationPlaceholder": "London",
-      "errorCity": "Please select departure and destination cities"
+      "errorCity": "Please select departure and destination cities",
+      "errorCityAutocomplete": "Please choose both cities from the autocomplete list.",
+      "errorDate": "Please select a departure date"
     },
     "hotel": {
       "destination": "Destination",
