@@ -57,7 +57,7 @@ export function RoutePageClient({ route }: { route: string }) {
   }
 
   return (
-    <main className="relative pb-16">
+    <main className="pb-16">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }} />
 
@@ -73,8 +73,7 @@ export function RoutePageClient({ route }: { route: string }) {
               className="object-cover"
             />
           ) : null}
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/75 via-slate-900/55 to-white/10" />
-          <div className="absolute inset-0 bg-gradient-to-tr from-[#FFD700]/20 via-[#FFA500]/15 to-[#DAA520]/20 mix-blend-screen" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/75 via-slate-900/55 to-slate-50" />
         </div>
 
         <div className="mx-auto w-full max-w-[1200px] px-4 pb-10 pt-16 md:px-6 md:pb-16 md:pt-24">
@@ -111,7 +110,7 @@ export function RoutePageClient({ route }: { route: string }) {
         </div>
       </section>
 
-      <section className="bg-white/20 py-14">
+      <section className="bg-white py-14">
         <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
           <div className="grid gap-4 sm:grid-cols-3">
             {[
@@ -121,7 +120,7 @@ export function RoutePageClient({ route }: { route: string }) {
             ].map((x, i) => {
               const Icon = x.icon
               return (
-                <div key={i} className="glass-panel rounded-2xl p-5">
+                <div key={i} className="rounded-2xl bg-slate-50 p-5 shadow-sm">
                   <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-sky-100 text-sky-700">
                     <Icon className="h-4 w-4" />
                   </span>
@@ -134,7 +133,7 @@ export function RoutePageClient({ route }: { route: string }) {
         </div>
       </section>
 
-      <section className="bg-white/10 py-14">
+      <section className="bg-slate-50 py-14">
         <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-sky-600">{t('routePage.tipsBadge')}</p>
           <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
@@ -142,7 +141,7 @@ export function RoutePageClient({ route }: { route: string }) {
           </h2>
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {destination.tips.map((tip, i) => (
-              <div key={i} className="glass-panel flex items-start gap-3 rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <div key={i} className="flex items-start gap-3 rounded-2xl bg-white p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
                 <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-sky-100 text-sky-700">
                   <Info className="h-4 w-4" />
                 </span>
@@ -156,7 +155,7 @@ export function RoutePageClient({ route }: { route: string }) {
         </div>
       </section>
 
-      <section className="bg-white/15 py-14">
+      <section className="bg-white py-14">
         <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-600">{t('routePage.faqBadge')}</p>
           <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">
@@ -164,7 +163,7 @@ export function RoutePageClient({ route }: { route: string }) {
           </h2>
           <div className="mt-6 space-y-3">
             {destination.faq.map((q, i) => (
-              <details key={i} className="group glass-panel rounded-2xl p-5 transition-all open:shadow-md">
+              <details key={i} className="group rounded-2xl bg-slate-50 p-5 shadow-sm transition-all open:shadow-md">
                 <summary className="flex cursor-pointer list-none items-center justify-between gap-3">
                   <span className="flex items-center gap-2 font-display text-base font-semibold text-slate-900">
                     <CalendarCheck className="h-4 w-4 text-emerald-600" />
@@ -179,7 +178,7 @@ export function RoutePageClient({ route }: { route: string }) {
         </div>
       </section>
 
-      <section className="bg-white/10 py-14">
+      <section className="bg-slate-50 py-14">
         <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
           <p className="text-sm font-semibold uppercase tracking-wide text-sky-600">{t('routePage.otherBadge')}</p>
           <h2 className="mt-1 font-display text-3xl font-bold tracking-tight text-slate-900 md:text-4xl">{t('routePage.otherTitle')}</h2>
@@ -188,7 +187,7 @@ export function RoutePageClient({ route }: { route: string }) {
               <Link
                 key={o.slug}
                 href={`/search/${o.slug}`}
-                className="group glass-panel flex items-center gap-4 rounded-2xl p-4 transition-all hover:-translate-y-0.5 hover:shadow-md"
+                className="group flex items-center gap-4 rounded-2xl bg-white p-4 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
               >
                 <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-xl bg-slate-200">
                   {o.image ? (

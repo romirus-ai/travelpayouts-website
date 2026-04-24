@@ -26,9 +26,7 @@ export function SearchTabs({ defaultOrigin = null, defaultDestination = null, in
           onClick={() => setTab('flights')}
           className={cn(
             'inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition sm:w-auto',
-            tab === 'flights'
-              ? 'border border-white/70 bg-white/80 text-sky-700 shadow-md backdrop-blur-md'
-              : 'border border-white/50 bg-white/45 text-slate-700 backdrop-blur-md hover:bg-white/70'
+            tab === 'flights' ? 'bg-white text-sky-700 shadow-md' : 'bg-white/60 text-slate-700 hover:bg-white/90'
           )}
         >
           <Plane className="h-4 w-4 -rotate-45" /> {t('search.tabs.flights')}
@@ -38,9 +36,7 @@ export function SearchTabs({ defaultOrigin = null, defaultDestination = null, in
           onClick={() => setTab('hotels')}
           className={cn(
             'inline-flex min-h-11 w-full items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition sm:w-auto',
-            tab === 'hotels'
-              ? 'border border-white/70 bg-white/80 text-emerald-700 shadow-md backdrop-blur-md'
-              : 'border border-white/50 bg-white/45 text-slate-700 backdrop-blur-md hover:bg-white/70'
+            tab === 'hotels' ? 'bg-white text-emerald-700 shadow-md' : 'bg-white/60 text-slate-700 hover:bg-white/90'
           )}
         >
           <BedDouble className="h-4 w-4" /> {t('search.tabs.hotels')}

@@ -21,8 +21,7 @@ export function HeroSection({ heroImage }: { heroImage: string }) {
             sizes="100vw"
           />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-b from-slate-950/70 via-slate-900/50 to-white/10" />
-        <div className="absolute inset-0 bg-gradient-to-tr from-[#FFD700]/20 via-[#FFA500]/15 to-[#DAA520]/20 mix-blend-screen" />
+        <div className="absolute inset-0 bg-gradient-to-b from-sky-900/75 via-sky-800/55 to-slate-50" />
       </div>
 
       <div className="mx-auto w-full max-w-[1200px] px-4 pb-10 pt-14 sm:pt-16 sm:pb-12 md:px-6 md:pb-20 md:pt-24">

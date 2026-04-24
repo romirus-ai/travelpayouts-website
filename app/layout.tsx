@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${dmSans.variable} ${jakartaSans.variable} ${jetbrainsMono.variable} font-sans`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           <LocalizationProvider>
-            <div className="relative z-0 flex min-h-screen flex-col">
+            <div className="flex min-h-screen flex-col">
               <SiteHeader />
               <div className="flex-1">{children}</div>
               <SiteFooter />

@@ -110,9 +110,6 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    background: radial-gradient(circle at 10% 10%, rgb(255 215 0 / 0.09), transparent 45%),
-      radial-gradient(circle at 85% 5%, rgb(255 165 0 / 0.08), transparent 40%),
-      hsl(var(--background));
   }
 
   * {
@@ -120,40 +117,12 @@
   }
 
   body {
-    position: relative;
-    min-height: 100vh;
-    background-color: transparent;
+    background-color: hsl(var(--background));
     color: hsl(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background: linear-gradient(
-      135deg,
-      rgb(255 215 0 / 0.22) 0%,
-      rgb(255 165 0 / 0.30) 33%,
-      rgb(218 165 32 / 0.24) 66%,
-      rgb(255 215 0 / 0.22) 100%
-    );
-    background-size: 220% 220%;
-    animation: goldShimmer 4s ease infinite;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -1;
-    background: radial-gradient(circle at 50% -20%, rgb(255 255 255 / 0.40), transparent 60%);
   }
 
   ::selection {
@@ -188,23 +157,25 @@
   }
 
   .glass-section {
-    background: rgb(255 255 255 / 0.62);
+    background:
+      linear-gradient(
+        135deg,
+        rgb(255 215 0 / 0.16) 0%,
+        rgb(255 165 0 / 0.22) 33%,
+        rgb(218 165 32 / 0.18) 66%,
+        rgb(255 215 0 / 0.16) 100%
+      ),
+      rgb(255 255 255 / 0.62);
+    background-size: 220% 220%, auto;
+    animation: goldShimmer 6s ease infinite;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-  }
-
-  .glass-panel {
-    border: 1px solid rgb(255 255 255 / 0.45);
-    background: linear-gradient(145deg, rgb(255 255 255 / 0.78), rgb(255 255 255 / 0.52));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 30px rgb(15 23 42 / 0.08);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before {
+  .glass-section {
     animation: none;
-    background-position: 50% 50%;
+    background-position: 50% 50%, 0 0;
   }
 }

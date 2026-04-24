@@ -14,7 +14,7 @@ export function FeaturesSection() {
   ]
 
   return (
-    <section className="bg-white/15 py-14 md:py-16">
+    <section className="bg-white py-14 md:py-16">
       <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-sky-600">{t('features.badge')}</p>
@@ -29,7 +29,7 @@ export function FeaturesSection() {
             return (
               <div
                 key={i}
-                className="glass-panel rounded-2xl p-5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/80 hover:shadow-md"
+                className="rounded-2xl bg-slate-50 p-5 transition-all duration-300 hover:-translate-y-0.5 hover:bg-sky-50 hover:shadow-md"
               >
                 <span className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-xl bg-white text-sky-600 shadow-sm">
                   <Icon className="h-5 w-5" />

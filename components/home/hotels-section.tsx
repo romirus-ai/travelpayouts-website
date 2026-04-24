@@ -14,7 +14,7 @@ export function HotelsSection() {
   ]
 
   return (
-    <section id="hotels" className="bg-gradient-to-b from-emerald-100/30 to-transparent py-16 md:py-20">
+    <section id="hotels" className="bg-gradient-to-b from-emerald-50/60 to-white py-16 md:py-20">
       <div className="mx-auto w-full max-w-[1200px] px-4 md:px-6">
         <div className="mb-8 max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">{t('hotels.badge')}</p>
@@ -28,7 +28,7 @@ export function HotelsSection() {
           {features.map((f, i) => {
             const Icon = f.icon
             return (
-              <div key={i} className="glass-panel flex items-start gap-3 rounded-2xl p-4">
+              <div key={i} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-slate-100">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
                   <Icon className="h-5 w-5" />
                 </span>

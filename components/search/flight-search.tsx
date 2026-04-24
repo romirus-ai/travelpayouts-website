@@ -81,7 +81,7 @@ export function FlightSearch({ defaultOrigin = null, defaultDestination = null, 
   }
 
   return (
-    <form onSubmit={onSubmit} className="glass-panel w-full rounded-2xl p-4 sm:p-5 md:p-6">
+    <form onSubmit={onSubmit} className="w-full rounded-2xl bg-white p-4 shadow-xl ring-1 ring-slate-100 sm:p-5 md:p-6">
       {compactTitle ? (
         <div className="mb-3 flex items-center gap-2 text-sm font-semibold text-slate-800">
           <Plane className="h-4 w-4 text-sky-600 -rotate-45" /> {compactTitle}

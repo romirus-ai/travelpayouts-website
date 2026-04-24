@@ -36,7 +36,7 @@ export default function HomePage() {
   }
 
   return (
-    <main className="relative">
+    <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ld) }} />
       <HeroSection heroImage={hero} />
       <FeaturesSection />
